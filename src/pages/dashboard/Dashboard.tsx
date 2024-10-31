@@ -1,17 +1,11 @@
-import { useState } from "react";
-import { Posts } from "./components/Posts";
-import { Post } from "./components/Post";
+import StockTable from "./components/StockTable/StockTable";
 
 export function Dashboard() {
-  const [postId, setPostId] = useState(-1);
-
   return (
     <>
-      {postId > -1 ? (
-        <Post postId={postId} setPostId={setPostId} />
-      ) : (
-        <Posts setPostId={setPostId} />
-      )}
+      <div className="grid grid-cols-2 gap-2">
+        <StockTable></StockTable>
+      </div>
     </>
   );
 }
