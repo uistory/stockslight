@@ -4,6 +4,9 @@ import { createSyncStoragePersister } from "@tanstack/query-sync-storage-persist
 import { PersistQueryClientProvider } from "@tanstack/react-query-persist-client";
 import { Dashboard } from "./pages/dashboard/Dashboard";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import DefaultLayout from "./layout/DefaultLayout";
+import { Route, Routes } from "react-router-dom";
+import PageTitle from "./shared/components/PageTitle";
 
 function App() {
   const queryClient = new QueryClient();
@@ -18,7 +21,19 @@ function App() {
         client={queryClient}
         persistOptions={{ persister }}
       >
-        <Dashboard />
+        <DefaultLayout>
+          <Routes>
+            <Route
+              index
+              element={
+                <>
+                  <PageTitle title="Stockslight" />
+                  <Dashboard />
+                </>
+              }
+            />
+          </Routes>
+        </DefaultLayout>
         <ReactQueryDevtools initialIsOpen={false} />
       </PersistQueryClientProvider>
       );
